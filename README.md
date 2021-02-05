@@ -7,6 +7,7 @@ Projeto web
 O controle das tarefas desse projeto será realizado pelo GitHub
 
 ## Ícones
+<<<<<<< HEAD
 - :package: nova funcionalidade
 - :up: atualização
 - :beetle: correção de bug
