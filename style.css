@@ -1,3 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;800&family=Josefin+Slab:ital,wght@0,400;0,500;1,300&family=Mulish:ital,wght@0,400;0,500;0,600;1,500&display=swap');
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css')
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    /* o 100vh é pra qnd renderizar a tela, ele ocupar 100% do tmanho */
+    overflow: hidden;
+    /*desabilita a possibilidade do cabeçalho passar o tamanho da janela, gerando barra de rolagem horizontal*/
+    position: relative;
+}
+
+/* a imagem vai ocupar 100% da largura e altura em relação ao header,ou seja, todo espaço do header */
+.img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    /*foi colocado esse backgr color com opacidade pra contrastar com a opacidade da imagem, se n colocasse esse background, a imagem pareceria lavada pq o fundo padrão é branco*/
+}
+
+/* Se não formatar a propria imagem, a imagem iria passar sem respeitar a formatação da classe pai wrapper */
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*vai fazer com q a imagem cubra o wrapper(a imagem não fica espremendo qnd muda a resoluçao, ela n perde a proporção)*/
+    opacity: 0.5;
+    animation: zoom 25s;
+}
+/* É para dar o efeito do zoom qnd entra na pagina. no 0%(qnd começa) qro q de 30% de zoom e no final qro q fique a imagem padrao */
+@keyframes zoom {
+    0%{
+        transform: scale(1.3);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.banner {
+    position: absolute;
+    /*para o banner ter posição absoluta dentro da div, tem q colocar a div com posição relativa*/
+    top: 30%;
+    left: 15%;
+}
+
+.banner h1 {
+    color: #fff;
+    font-size: 3.5rem;
+    /*o bom é usar a unidade de font "em" ou "rem" por questões de acessibilidade. se um usuario for mecher a fonte, fonts com pixel como unidade de medida, n irá mudar n*/
+    font-family: "Baloo Da 2", serif;
+    /*o rem ele pega como referencia o pai, q é o banner, e o banner pega referencia o pai dele e assim ate chegar no body, por padrão a font é 16px, então se tiver 2rem, irá sser 2 vezes o tamnho da fonte padrao*/
+    font-weight: 200;
+    /*tirar um pouco do negrito da font*/
+    text-shadow: .2rem .3rem 2px rgba(0, 0, 0, .4);
+    /*sombreamento de texto*/
+    line-height: 3.5rem;
+    /*espaçamento entre as linhas*/
+    margin-bottom: 2rem;
+    /*dar um espaçamento entre o h1 e o p*/
+    opacity: 0;
+    /*essa opacidade 0 é pra qnd carregar a pagina seja 0, mas tem o efeito da animação q irá voltar pra 100%*/
+    animation: moveBanner 1s 0.5s forwards;
+    /*animação do texto*/
+}
+
+.banner p {
+    font-family: "Josefin Slab", serif;
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: .2rem .2rem rgba(0, 0, 0, .4);
+    margin-bottom: 2rem;
+    /*dar um espaçamento entre o p e o botao*/
+    opacity: 0;
+    animation: moveBanner 1s 0.7s forwards;
+}
+
+.banner button {
+    font-family: "Mulish", serif;
+    color: #fff;    
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    /*essas 3 linha de bacground abaixo foram pegadas do site. É um gradiente*/
+    background: #6a3093;
+    background: -webkit-linear-gradient(to right, #6a3093, #a044ff);
+    background: linear-gradient(to right, #6a3093, #a044ff);
+    padding: 1rem 3rem;
+    /*o padding é a margem interna do botão, fazer ele crescer. 1rem refencia cima e baixo e o 2rem  é a esquerda e direita. Pode ter ate 4 valores*/
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    animation: moveBanner 1s 0.9s forwards;
+}
+
+.banner button:hover {
+  color: rgb(0, 0, 0)  
+}
+
+@keyframes moveBanner {
+    0% {
+        transform: translateY(10rem) rotateY(-30deg);
+    }
+    100% {
+        transform: translateY(0)  rotateY(0);
+        opacity: 1;
+    }    
+}
